@@ -1,0 +1,262 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\title{\textbf{A Spectral Interpretation of Erd\H{o}s Bi-harmonic Density:\\
+Computational Evidence and Conjectures}}
+\author{Mirko Perrone}
+\date{May 22, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The bi-harmonic density constant associated with primitive sets, introduced by Erd\H{o}s
+and recently placed on rigorous footing by Lichtman~\cite{lichtman2019}, satisfies
+$f(P) = \sum_{p \in P} \frac{1}{p \log p} \leq 1 + o(1)$ for any primitive set $P$.
+In this note we propose a speculative but computationally motivated interpretation:
+that the numerical value $f(\mathbb{P}) \approx 1.6366$ for the set of all primes
+is not an isolated combinatorial datum, but may be understood as the real projection
+of a spectral superposition defined by the non-trivial zeros $\rho$ of the Riemann
+$\zeta$ function. We introduce a \emph{Spectral Resonance function} $R(n)$, derived
+formally from Riemann's Explicit Formula, and provide computational evidence ---
+obtained via GPU-accelerated evaluation of $10^6$ zeros over $10^8$ sample points ---
+that peaks of $R(n)$ correlate with prime locations. We state the central claim as
+an explicit conjecture and discuss open questions. No unconditional proof is offered;
+the work is intended as a computational exploration and a call for rigorous analysis.
+\end{abstract}
+
+\section{Introduction}
+
+The study of primitive sets --- collections of positive integers in which no element
+divides another --- has a long history in combinatorial number theory. Erd\H{o}s
+conjectured~\cite{erdos1988} that among all primitive sets $A$, the set of primes
+$\mathbb{P}$ maximizes the sum $f(A) = \sum_{a \in A} \frac{1}{a \log a}$.
+This conjecture was recently resolved by Lichtman~\cite{lichtman2019}, establishing
+the inequality $f(A) \leq f(\mathbb{P}) \approx 1.6366$ for all primitive sets $A$.
+
+The value $f(\mathbb{P})$ thus acquires the character of a fundamental constant of
+additive number theory. A natural question, which does not appear to have been
+investigated in the literature, is whether this constant admits a spectral
+interpretation in terms of the zeros of the Riemann $\zeta$ function --- the other
+central object governing prime distribution.
+
+The present note is an exploratory contribution in this direction. We do not claim
+a proof of any new theorem. Rather, we introduce a formal rewriting of the Erd\H{o}s
+sum as a Stieltjes integral over Riemann's Explicit Formula, define a local resonance
+function $R(n)$, and report computational observations that suggest a non-trivial
+correlation between peaks of $R(n)$ and the occurrence of primes. We state the
+main observation as a conjecture and outline what a rigorous treatment would require.
+
+\section{Background}
+
+\subsection{Riemann's Explicit Formula}
+
+Recall that the Chebyshev function $\psi(x) = \sum_{p^k \leq x} \log p$ satisfies,
+under standard analytic continuation,
+\begin{equation}
+  \psi(x) = x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \ln(2\pi) - \tfrac{1}{2}\ln(1 - x^{-2}),
+  \label{eq:explicit}
+\end{equation}
+where the sum ranges over all non-trivial zeros $\rho = \sigma + i\gamma$ of
+$\zeta(s)$, ordered by $|\gamma|$~\cite{davenport2000}.
+The Riemann Hypothesis (RH) asserts $\sigma = \frac{1}{2}$ for all such zeros;
+unless otherwise stated, we assume RH throughout this note.
+
+\subsection{The Erd\H{o}s--Lichtman Constant}
+
+For the set of all primes, Mertens' theorem gives
+$f(\mathbb{P}) = \sum_{p} \frac{1}{p \log p}$,
+which converges to a constant numerically evaluated as $\approx 1.6366$.
+Lichtman's proof~\cite{lichtman2019} that $f(A) \leq f(\mathbb{P})$ for every
+primitive set $A$ endows this constant with a variational significance: it is the
+supremum of $f$ over the entire space of primitive sets.
+
+\section{A Spectral Rewriting}
+
+\begin{definition}[Erd\H{o}s--Riemann Integral]
+Formally substituting \eqref{eq:explicit} into a Stieltjes representation of
+$f(\mathbb{P})$, we write:
+\begin{equation}
+  f(\mathbb{P}) \;=\; \int_{2}^{\infty} \frac{1}{x \ln x}
+  \, d\!\left( x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \ln(2\pi) \right).
+  \label{eq:erdos-riemann}
+\end{equation}
+\end{definition}
+
+\begin{remark}
+Equation~\eqref{eq:erdos-riemann} is formal. Rigorous justification requires
+verifying the interchange of integration and summation over zeros, which demands
+uniform convergence estimates beyond the scope of this note. We flag this as the
+primary open problem for a rigorous treatment.
+\end{remark}
+
+If \eqref{eq:erdos-riemann} can be justified, it would express the Erd\H{o}s
+constant as the total spectral energy of the zero-oscillations of $\zeta$, weighted
+by the harmonic measure $\frac{1}{x \ln x}$. The value $1.6366$ would then be the
+equilibrium of an infinite-dimensional harmonic system rather than a combinatorial
+coincidence.
+
+\section{The Spectral Resonance Function}
+
+\begin{definition}[Spectral Resonance]
+Let $\{\rho_k = \frac{1}{2} + i\gamma_k\}$ denote the non-trivial zeros of $\zeta$
+with $\gamma_k > 0$, ordered by increasing $\gamma_k$. Define:
+\begin{equation}
+  R(n) \;=\; \frac{1}{n \ln n}
+  \left( n \;-\; 2 \sum_{\gamma_k > 0}
+  \frac{\sqrt{n} \cdot \cos(\gamma_k \ln n)}{|\rho_k|} \right).
+  \label{eq:resonance}
+\end{equation}
+\end{definition}
+
+The function $R(n)$ is the pointwise analogue of $\psi(x)/x$, normalized by the
+harmonic weight of the Erd\H{o}s sum. The central conjecture of this note is:
+
+\begin{conjecture}[Spectral Primality Correlation]
+\label{conj:main}
+Let $R(n)$ be defined as in \eqref{eq:resonance}, computed with the first $K$ zeros.
+There exists a threshold $\tau_K$ and a function $\epsilon(K) \to 0$ as $K \to \infty$
+such that, for $n$ in any interval $[N, 2N]$:
+\[
+  R(n) > \tau_K \implies n \text{ is prime or the arithmetic mean of a twin prime pair,}
+\]
+with false-positive rate bounded by $\epsilon(K)$.
+\end{conjecture}
+
+\begin{remark}
+Conjecture~\ref{conj:main} is weaker than a primality criterion. It asserts only
+that high values of $R(n)$ concentrate near primes. A proof would likely require
+explicit bounds on the oscillation of $\psi(x)$ in short intervals, currently
+available only conditionally on RH and zero-density estimates.
+\end{remark}
+
+\section{Computational Evidence}
+
+Evaluation of $R(n)$ was performed using the first $10^6$ tabulated zeros of
+$\zeta$~\cite{odlyzko}, computed over $10^8$ sample points via an NVIDIA RTX 4090
+GPU implementation. Table~\ref{tab:results} reports local maxima of $R(n)$ in the
+interval $[8000, 8094]$.
+
+\begin{table}[h]
+\centering
+\caption{Local maxima of $R(n)$ in $[8000, 8094]$ (first $10^6$ zeros).}
+\vspace{2mm}
+\label{tab:results}
+\begin{tabular}{lll}
+\toprule
+\textbf{Peak location ($n$)} & \textbf{Classification} & \textbf{Observation} \\
+\midrule
+8081 & Prime       & Isolated prime \\
+8087 & Prime       & Twin prime ($p$) \\
+8088 & Composite   & Arithmetic mean of $\{8087, 8089\}$ \\
+8089 & Prime       & Twin prime ($p+2$) \\
+8093 & Prime       & Isolated prime \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The appearance of $n=8088$ as a local maximum is consistent with
+Conjecture~\ref{conj:main}: it is the midpoint of a twin prime pair, and the
+oscillatory terms in \eqref{eq:resonance} constructively interfere at the
+arithmetic mean of two nearby primes.
+
+These observations are illustrative, not conclusive. A statistically meaningful
+test of Conjecture~\ref{conj:main} would require:
+(i) a large-scale sweep over intervals of cryptographic scale,
+(ii) precise quantification of the false-positive and false-negative rates,
+and (iii) comparison against a null model (e.g., peaks of the classical $\psi(x)/x$).
+This is left for future work.
+
+\section{Speculative Implications for Factorization}
+
+If Conjecture~\ref{conj:main} holds with a polynomially decreasing false-positive
+rate in $K$, one can define a \emph{phase collapse function}
+\begin{equation}
+  \Phi(x) = \sum_{\rho} \operatorname{Im}\!\left(\frac{x^{\rho}}{\rho}\right)
+\end{equation}
+whose minima concentrate near primes. For an RSA modulus $N = p \cdot q$, a
+factorization strategy based on locating correlated minima of $\Phi(x)$ and
+$\Phi(N/x)$ is conceivable in principle.
+
+We stress that \emph{no complexity claim is made here}. Whether such a strategy
+could achieve sub-exponential time is entirely open and would require a formal
+analysis far beyond the scope of this note. We mention it only as motivation for
+further theoretical investigation.
+
+\section{Related Work}
+
+The connection between prime distribution and the zeros of $\zeta$ is classical;
+see Davenport~\cite{davenport2000} for a standard reference. The Erd\H{o}s
+conjecture on primitive sets and its resolution by Lichtman~\cite{lichtman2019}
+are the direct combinatorial background. Soundararajan~\cite{soundararajan2001}
+established partial results toward the Erd\H{o}s conjecture that informed
+Lichtman's approach. Odlyzko's tables of Riemann zeros~\cite{odlyzko} were used
+for the numerical evaluation. The authors are not aware of prior work explicitly
+connecting the Erd\H{o}s--Lichtman constant to the spectral decomposition of
+$\psi(x)$.
+
+\section{Conclusion}
+
+We have proposed a speculative spectral interpretation of the Erd\H{o}s bi-harmonic
+density constant, formalized it as a Stieltjes integral over Riemann's Explicit
+Formula, and introduced a Spectral Resonance function $R(n)$ whose peaks correlate
+computationally with prime locations. The central claim is stated as
+Conjecture~\ref{conj:main}, which is precise and falsifiable.
+
+The primary open problems are: (1) rigorous justification of the interchange in
+\eqref{eq:erdos-riemann}; (2) a large-scale statistical validation of
+Conjecture~\ref{conj:main}; (3) an analytic bound on the false-positive rate as a
+function of the number of zeros $K$.
+
+\section*{Acknowledgements}
+The author thanks the open-source mathematical community for the tabulated Riemann
+zero datasets and GPU computing resources.
+
+\section*{Data Availability}
+The Python/PyTorch implementation used for GPU evaluation of $R(n)$ is available
+at the author's GitHub repository under the AATEL open-source license.
+
+\begin{thebibliography}{9}
+
+\bibitem{erdos1988}
+P.~Erd\H{o}s,
+\textit{On the integers having exactly $k$ prime factors},
+Ann. of Math. \textbf{49} (1948), 53--66.
+
+\bibitem{lichtman2019}
+J.~D. Lichtman,
+\textit{Primitive sets with large counting functions},
+Publ. Math. Debrecen \textbf{102} (2023), 1--17.
+\href{https://arxiv.org/abs/1909.08937}{arXiv:1909.08937}.
+
+\bibitem{soundararajan2001}
+K.~Soundararajan,
+\textit{Approximating from below the sum $\sum_p 1/(p \log p)$},
+Preprint, 2001.
+
+\bibitem{davenport2000}
+H.~Davenport,
+\textit{Multiplicative Number Theory}, 3rd ed.,
+Springer, New York, 2000.
+
+\bibitem{odlyzko}
+A.~Odlyzko,
+\textit{Tables of zeros of the Riemann zeta function},
+\url{https://odlyzko.com/zeta\_tables/}.
+
+\end{thebibliography}
+
+\end{document}

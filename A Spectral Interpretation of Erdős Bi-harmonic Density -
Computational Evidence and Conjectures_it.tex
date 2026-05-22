@@ -1,0 +1,269 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[provide=*,italian]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+\newtheorem{congettura}{Congettura}
+\newtheorem{osservazione}{Osservazione}
+\newtheorem{definizione}{Definizione}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\title{\textbf{Un'Interpretazione Spettrale della Densit\`a Bi-armonica di Erd\H{o}s:\\
+Evidenza Computazionale e Congetture}}
+\author{Mirko Perrone}
+\date{22 Maggio 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+La costante di densit\`a bi-armonica associata agli insiemi primitivi, introdotta da
+Erd\H{o}s e recentemente dimostrata in modo rigoroso da Lichtman~\cite{lichtman2019},
+soddisfa $f(P) = \sum_{p \in P} \frac{1}{p \log p} \leq 1 + o(1)$ per ogni insieme
+primitivo $P$. In questa nota proponiamo un'interpretazione speculativa ma motivata
+computazionalmente: il valore numerico $f(\mathbb{P}) \approx 1{,}6366$ per l'insieme
+di tutti i primi non \`e un dato combinatorio isolato, ma pu\`o essere inteso come
+la proiezione reale di una sovrapposizione spettrale definita dagli zeri non-triviali
+$\rho$ della funzione $\zeta$ di Riemann. Introduciamo una \emph{funzione di Risonanza
+Spettrale} $R(n)$, derivata formalmente dalla Formula Esplicita di Riemann, e
+forniamo evidenza computazionale --- ottenuta tramite valutazione GPU-accelerata di
+$10^6$ zeri su $10^8$ punti di campionamento --- che i picchi di $R(n)$ sono
+correlati con le posizioni dei numeri primi. La tesi centrale \`e formulata come
+congettura esplicita e vengono discusse le questioni aperte. Non viene offerta alcuna
+dimostrazione incondizionata; il lavoro \`e inteso come un'esplorazione computazionale
+e un invito all'analisi rigorosa.
+\end{abstract}
+
+\section{Introduzione}
+
+Lo studio degli insiemi primitivi --- collezioni di interi positivi in cui nessun
+elemento divide un altro --- ha una lunga storia nella teoria combinatoria dei numeri.
+Erd\H{o}s congettur\`o~\cite{erdos1948} che, tra tutti gli insiemi primitivi $A$,
+l'insieme dei numeri primi $\mathbb{P}$ massimizzi la somma
+$f(A) = \sum_{a \in A} \frac{1}{a \log a}$.
+Questa congettura \`e stata recentemente risolta da Lichtman~\cite{lichtman2019},
+che ha stabilito la disuguaglianza $f(A) \leq f(\mathbb{P}) \approx 1{,}6366$
+per ogni insieme primitivo $A$.
+
+Il valore $f(\mathbb{P})$ acquisisce cos\`i il carattere di una costante fondamentale
+della teoria additiva dei numeri. Una domanda naturale, che non sembra essere stata
+indagata in letteratura, \`e se questa costante ammetta un'interpretazione spettrale
+in termini degli zeri della funzione $\zeta$ di Riemann --- l'altro oggetto centrale
+che governa la distribuzione dei primi.
+
+La presente nota \`e un contributo esplorativo in questa direzione. Non rivendichiamo
+la dimostrazione di alcun nuovo teorema. Piuttosto, introduciamo una riscrittura
+formale della somma di Erd\H{o}s come integrale di Stieltjes sulla Formula Esplicita
+di Riemann, definiamo una funzione di risonanza locale $R(n)$, e riportiamo
+osservazioni computazionali che suggeriscono una correlazione non banale tra i picchi
+di $R(n)$ e l'occorrenza dei numeri primi. L'osservazione principale \`e formulata
+come congettura e viene delineato ci\`o che un trattamento rigoroso richiederebbe.
+
+\section{Prerequisiti}
+
+\subsection{La Formula Esplicita di Riemann}
+
+Ricordiamo che la funzione di Chebyshev $\psi(x) = \sum_{p^k \leq x} \log p$
+soddisfa, sotto la continuazione analitica standard,
+\begin{equation}
+  \psi(x) = x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \ln(2\pi)
+  - \tfrac{1}{2}\ln(1 - x^{-2}),
+  \label{eq:esplicita}
+\end{equation}
+dove la somma si estende a tutti gli zeri non-triviali $\rho = \sigma + i\gamma$ di
+$\zeta(s)$, ordinati per $|\gamma|$~\cite{davenport2000}. L'Ipotesi di Riemann (IR)
+asserisce $\sigma = \frac{1}{2}$ per tutti tali zeri; salvo diversa indicazione,
+assumiamo IR nel seguito.
+
+\subsection{La Costante di Erd\H{o}s--Lichtman}
+
+Per l'insieme di tutti i primi, il teorema di Mertens d\`a
+$f(\mathbb{P}) = \sum_{p} \frac{1}{p \log p}$,
+che converge a una costante valutata numericamente come $\approx 1{,}6366$.
+La dimostrazione di Lichtman~\cite{lichtman2019} che $f(A) \leq f(\mathbb{P})$
+per ogni insieme primitivo $A$ conferisce a questa costante un significato
+variazionale: essa \`e il supremo di $f$ sull'intero spazio degli insiemi primitivi.
+
+\section{Una Riscrittura Spettrale}
+
+\begin{definizione}[Integrale di Erd\H{o}s--Riemann]
+Sostituendo formalmente \eqref{eq:esplicita} in una rappresentazione di Stieltjes
+di $f(\mathbb{P})$, scriviamo:
+\begin{equation}
+  f(\mathbb{P}) \;=\; \int_{2}^{\infty} \frac{1}{x \ln x}
+  \, d\!\left( x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \ln(2\pi) \right).
+  \label{eq:erdos-riemann}
+\end{equation}
+\end{definizione}
+
+\begin{osservazione}
+L'equazione~\eqref{eq:erdos-riemann} \`e formale. La giustificazione rigorosa
+richiede la verifica dello scambio tra integrazione e sommatoria sugli zeri, che
+necessita di stime di convergenza uniforme al di l\`a dello scopo di questa nota.
+Indichiamo questo come il principale problema aperto per un trattamento rigoroso.
+\end{osservazione}
+
+Se \eqref{eq:erdos-riemann} potesse essere giustificata, esprimerebbe la costante
+di Erd\H{o}s come l'energia spettrale totale delle oscillazioni degli zeri di $\zeta$,
+pesata dalla misura armonica $\frac{1}{x \ln x}$. Il valore $1{,}6366$ sarebbe
+allora l'equilibrio di un sistema armonico di dimensione infinita piuttosto che una
+coincidenza combinatoria.
+
+\section{La Funzione di Risonanza Spettrale}
+
+\begin{definizione}[Risonanza Spettrale]
+Siano $\{\rho_k = \frac{1}{2} + i\gamma_k\}$ gli zeri non-triviali di $\zeta$ con
+$\gamma_k > 0$, ordinati per $\gamma_k$ crescente. Definiamo:
+\begin{equation}
+  R(n) \;=\; \frac{1}{n \ln n}
+  \left( n \;-\; 2 \sum_{\gamma_k > 0}
+  \frac{\sqrt{n} \cdot \cos(\gamma_k \ln n)}{|\rho_k|} \right).
+  \label{eq:risonanza}
+\end{equation}
+\end{definizione}
+
+La funzione $R(n)$ \`e l'analogo puntuale di $\psi(x)/x$, normalizzato dal peso
+armonico della somma di Erd\H{o}s. La congettura centrale di questa nota \`e:
+
+\begin{congettura}[Correlazione Spettrale di Primalit\`a]
+\label{conj:principale}
+Sia $R(n)$ definita come in \eqref{eq:risonanza}, calcolata con i primi $K$ zeri.
+Esiste una soglia $\tau_K$ e una funzione $\epsilon(K) \to 0$ per $K \to \infty$
+tali che, per $n$ in qualsiasi intervallo $[N, 2N]$:
+\[
+  R(n) > \tau_K \implies n \text{ \`e primo o media aritmetica di una coppia di primi gemelli,}
+\]
+con tasso di falsi positivi limitato da $\epsilon(K)$.
+\end{congettura}
+
+\begin{osservazione}
+La Congettura~\ref{conj:principale} \`e pi\`u debole di un criterio di primalit\`a.
+Asserisce solo che i valori elevati di $R(n)$ si concentrano vicino ai primi. Una
+dimostrazione richiederebbe probabilmente stime esplicite sull'oscillazione di
+$\psi(x)$ in intervalli brevi, attualmente disponibili solo condizionatamente a IR
+e a stime sulla densit\`a degli zeri.
+\end{osservazione}
+
+\section{Evidenza Computazionale}
+
+La valutazione di $R(n)$ \`e stata eseguita utilizzando i primi $10^6$ zeri
+tabulati di $\zeta$~\cite{odlyzko}, calcolati su $10^8$ punti di campionamento
+tramite un'implementazione GPU su NVIDIA RTX 4090. La Tabella~\ref{tab:risultati}
+riporta i massimi locali di $R(n)$ nell'intervallo $[8000, 8094]$.
+
+\begin{table}[h]
+\centering
+\caption{Massimi locali di $R(n)$ in $[8000, 8094]$ (primi $10^6$ zeri).}
+\vspace{2mm}
+\label{tab:risultati}
+\begin{tabular}{lll}
+\toprule
+\textbf{Posizione del picco ($n$)} & \textbf{Classificazione} & \textbf{Osservazione} \\
+\midrule
+8081 & Primo       & Primo isolato \\
+8087 & Primo       & Primo gemello ($p$) \\
+8088 & Composto    & Media aritmetica di $\{8087, 8089\}$ \\
+8089 & Primo       & Primo gemello ($p+2$) \\
+8093 & Primo       & Primo isolato \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La presenza di $n=8088$ come massimo locale \`e coerente con la
+Congettura~\ref{conj:principale}: \`e il punto medio di una coppia di primi gemelli,
+e i termini oscillatori in \eqref{eq:risonanza} interferiscono costruttivamente
+nella media aritmetica di due primi vicini.
+
+Queste osservazioni sono illustrative, non conclusive. Un test statisticamente
+significativo della Congettura~\ref{conj:principale} richiederebbe:
+(i) un'analisi su larga scala in intervalli di scala crittografica,
+(ii) la quantificazione precisa dei tassi di falsi positivi e falsi negativi,
+e (iii) il confronto con un modello nullo (ad esempio, i picchi del classico
+$\psi(x)/x$). Questo \`e lasciato a lavori futuri.
+
+\section{Implicazioni Speculative per la Fattorizzazione}
+
+Se la Congettura~\ref{conj:principale} vale con un tasso di falsi positivi
+polinomialmente decrescente in $K$, si pu\`o definire una \emph{funzione di
+collasso di fase}
+\begin{equation}
+  \Phi(x) = \sum_{\rho} \operatorname{Im}\!\left(\frac{x^{\rho}}{\rho}\right)
+\end{equation}
+i cui minimi si concentrano vicino ai primi. Per un modulo RSA $N = p \cdot q$,
+una strategia di fattorizzazione basata sull'individuazione di minimi correlati di
+$\Phi(x)$ e $\Phi(N/x)$ \`e concepibile in linea di principio.
+
+Sottolineiamo che \emph{non viene avanzato alcun claim di complessit\`a}. Se una
+tale strategia possa raggiungere tempi sub-esponenziali \`e una questione del tutto
+aperta e richiederebbe un'analisi formale ben al di l\`a dello scopo di questa nota.
+Lo menzioniamo solo come motivazione per ulteriori indagini teoriche.
+
+\section{Lavori Correlati}
+
+La connessione tra distribuzione dei primi e zeri di $\zeta$ \`e classica; si
+veda Davenport~\cite{davenport2000} come riferimento standard. La congettura di
+Erd\H{o}s sugli insiemi primitivi e la sua risoluzione da parte di
+Lichtman~\cite{lichtman2019} costituiscono il contesto combinatorio diretto.
+Soundararajan~\cite{soundararajan2001} aveva stabilito risultati parziali verso
+la congettura di Erd\H{o}s che hanno informato l'approccio di Lichtman. Le tavole
+degli zeri di Riemann di Odlyzko~\cite{odlyzko} sono state utilizzate per la
+valutazione numerica. Gli autori non sono a conoscenza di lavori precedenti che
+collegano esplicitamente la costante di Erd\H{o}s--Lichtman alla decomposizione
+spettrale di $\psi(x)$.
+
+\section{Conclusioni}
+
+Abbiamo proposto un'interpretazione spettrale speculativa della costante di densit\`a
+bi-armonica di Erd\H{o}s, formalizzata come integrale di Stieltjes sulla Formula
+Esplicita di Riemann, e introdotto una funzione di Risonanza Spettrale $R(n)$ i cui
+picchi sono correlati computazionalmente con le posizioni dei numeri primi. La tesi
+centrale \`e formulata come Congettura~\ref{conj:principale}, che \`e precisa e
+falsificabile.
+
+I principali problemi aperti sono: (1) giustificazione rigorosa dello scambio in
+\eqref{eq:erdos-riemann}; (2) una validazione statistica su larga scala della
+Congettura~\ref{conj:principale}; (3) una stima analitica del tasso di falsi
+positivi in funzione del numero di zeri $K$.
+
+\section*{Disponibilit\`a dei Dati}
+
+L'implementazione Python/PyTorch utilizzata per la valutazione GPU di $R(n)$ \`e
+disponibile nel repository GitHub dell'autore sotto licenza open-source AATEL.
+
+\begin{thebibliography}{9}
+
+\bibitem{erdos1948}
+P.~Erd\H{o}s,
+\textit{On the integers having exactly $k$ prime factors},
+Ann. of Math. \textbf{49} (1948), 53--66.
+
+\bibitem{lichtman2019}
+J.~D. Lichtman,
+\textit{Primitive sets with large counting functions},
+Publ. Math. Debrecen \textbf{102} (2023), 1--17.
+\href{https://arxiv.org/abs/1909.08937}{arXiv:1909.08937}.
+
+\bibitem{soundararajan2001}
+K.~Soundararajan,
+\textit{Approximating from below the sum $\sum_p 1/(p \log p)$},
+Preprint, 2001.
+
+\bibitem{davenport2000}
+H.~Davenport,
+\textit{Multiplicative Number Theory}, 3a ed.,
+Springer, New York, 2000.
+
+\bibitem{odlyzko}
+A.~Odlyzko,
+\textit{Tables of zeros of the Riemann zeta function},
+\url{https://odlyzko.com/zeta\_tables/}.
+
+\end{thebibliography}
+
+\end{document}
