@@ -60,6 +60,46 @@ def normalize_and_detrend(signal, device):
     return R.to(torch.float64)
 
 
+# 1. Modifica la funzione principale per accettare l'offset
+def compute_resonance_rsa_100(x_vals, gamma, device, mode="minkowski", offset=0):
+    sqrt_erdos = math.sqrt(ERDOS_CONST)
+    
+    # Calcoliamo il logaritmo ad alta precisione con l'offset
+    # Questo evita che la fase collassi a zero a quota 10^49
+    x_shifted = x_vals + offset
+    
+    if mode == "adelic":
+        # Metrica Adelica con Offset per RSA-100
+        ln_x = torch.log(x_shifted)
+        local_structure = torch.sin(math.pi * x_shifted / ERDOS_CONST)
+        metric_x = ln_x * (1.0 + 0.05 * local_structure)
+    elif mode == "minkowski":
+        t = torch.log(x_shifted)
+        s = torch.sqrt(x_shifted / ERDOS_CONST)
+        metric_x = torch.sqrt(torch.abs(t**2 - s**2) + 1e-12)
+    else:
+        metric_x = torch.log(x_shifted)
+    
+    # Forza complex128 per RSA-100
+    weight = (1.0 / gamma).to(torch.complex128)
+    risonanza = torch.zeros_like(x_vals, dtype=torch.complex128)
+
+    for i in range(0, gamma.shape[0], BLOCK_SIZE):
+        b_gamma = gamma[i : i + BLOCK_SIZE]
+        b_weight = weight[i : i + BLOCK_SIZE]
+        
+        fase = b_gamma.unsqueeze(1) * metric_x.unsqueeze(0)
+        
+        reale = torch.cos(fase)
+        immag = torch.sin(fase) * sqrt_erdos
+        
+        fase_mirko = torch.complex(reale, immag)
+        contributo = torch.sum(fase_mirko * b_weight.unsqueeze(1), dim=0)
+        risonanza += contributo.squeeze()
+
+    signal = torch.abs(risonanza) * torch.sqrt(x_shifted)
+    return normalize_and_detrend(signal, device)
+
 
 def compute_resonance(x_vals, gamma, device, mode="minkowski"):
     sqrt_erdos = math.sqrt(ERDOS_CONST)
