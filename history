@@ -1,0 +1,1268 @@
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ py spectral_resonance_zeroes.py 
+[*] Caricamento 1M zeri...
+[*] Raffinamento spettrale intorno al picco principale...
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_zeroes.py", line 49, in <module>
+    vincitore = attacco_fase_chirurgica(N_TARGET)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_zeroes.py", line 31, in attacco_fase_chirurgica
+    log_x = torch.log(centro_base + offset)
+OverflowError: int too big to convert
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ py spectral_resonance_zeroes.py 
+[*] Caricamento 1M zeri...
+[*] Raffinamento spettrale intorno al picco principale...
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_zeroes.py", line 49, in <module>
+    vincitore = attacco_fase_chirurgica(N_TARGET)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_zeroes.py", line 31, in attacco_fase_chirurgica
+    log_x = torch.log(centro_base + offset)
+OverflowError: int too big to convert
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ code .
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ /home/aatel/venv/llama-gpu/bin/python /home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_zeroes.py
+[*] Caricamento 1M zeri...
+[*] Raffinamento spettrale intorno al picco principale...
+
+[*] Deep Scan Laser sul punto di minima fase...
+
+[!!!] RSA DECRIPTATA: -1
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ /home/aatel/venv/llama-gpu/bin/python /home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_zeroes.py
+[*] Caricamento 1M zeri...
+[*] Raffinamento spettrale intorno al picco principale...
+
+[*] Deep Scan Laser sul punto di minima fase...
+
+[!!!] RSA DECRIPTATA: -1
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py validate --start 10000000 --end 10000500 --zeros 1M.txt
+[device] cuda
+
+[validate] Range [10000000.0, 10000500.0] | 500,000 punti | 1,000,000 zeri
+[validate] Validazione CIECA: il range non è stato scelto per i risultati
+
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 346, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 340, in main
+    mode_validate(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 171, in mode_validate
+    gamma = load_zeros(args.zeros, args.max_zeros, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 35, in load_zeros
+    raise FileNotFoundError(
+FileNotFoundError: File zeri non trovato: 1M.txt
+Genera gli zeri con: python generate_zeros.py --count 10000
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py validate --start 10000000 --end 10000500 --zeros 
+generate_zeros.py             spectral_resonance.py         spectral_resonance_zeroes.py  zeri_1M.txt                   zeri_500.txt                  
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py validate --start 10000000 --end 10000500 --zeros zeri_1M.txt 
+[device] cuda
+
+[validate] Range [10000000.0, 10000500.0] | 500,000 punti | 1,000,000 zeri
+[validate] Validazione CIECA: il range non è stato scelto per i risultati
+
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+[*] Calcolo in 31.1s
+
+============================================================
+  STATISTICHE DI VALIDAZIONE  (K=25 picchi selezionati)
+============================================================
+  Primi reali nel range  : 25
+  Picchi predetti        : 25
+  True Positives (TP)    : 0
+  False Positives (FP)   : 25
+  False Negatives (FN)   : 25
+  Precision              : 0.0000 (0.0%)
+  Recall                 : 0.0000 (0.0%)
+  F1 Score               : 0.0000
+============================================================
+
+  Falsi positivi (predetti non-primi): [10000042, 10000043, 10000044, 10000045, 10000046, 10000047, 10000048, 10000049, 10000050, 10000051, 10000052, 10000053, 10000054, 10000055, 10000056, 10000057, 10000058, 10000059, 10000060, 10000061]
+  Falsi negativi (primi mancati):      [10000019, 10000079, 10000103, 10000121, 10000139, 10000141, 10000169, 10000189, 10000223, 10000229, 10000247, 10000253, 10000261, 10000271, 10000303, 10000339, 10000349, 10000357, 10000363, 10000379]
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py validate --start 1000 --end 1100 --zeros zeri_1M.txt
+[device] cuda
+
+[validate] Range [1000.0, 1100.0] | 100,000 punti | 1,000,000 zeri
+[validate] Validazione CIECA: il range non è stato scelto per i risultati
+
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+[*] Calcolo in 6.3s
+
+============================================================
+  STATISTICHE DI VALIDAZIONE  (K=16 picchi selezionati)
+============================================================
+  Primi reali nel range  : 16
+  Picchi predetti        : 16
+  True Positives (TP)    : 0
+  False Positives (FP)   : 16
+  False Negatives (FN)   : 16
+  Precision              : 0.0000 (0.0%)
+  Recall                 : 0.0000 (0.0%)
+  F1 Score               : 0.0000
+============================================================
+
+  Falsi positivi (predetti non-primi): [1001, 1002, 1071, 1072, 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1084]
+  Falsi negativi (primi mancati):      [1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069, 1087, 1091, 1093, 1097]
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py validate --start 1000 --end 1100 --zeros zeri_1M.txt
+[device] cuda
+
+[validate] Range [1000.0, 1100.0] | 100,000 punti | 1,000,000 zeri
+[validate] Validazione CIECA: il range non è stato scelto per i risultati
+
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+[*] Calcolo in 6.3s
+
+============================================================
+  STATISTICHE DI VALIDAZIONE  (K=16 picchi selezionati)
+============================================================
+  Primi reali nel range  : 16
+  Picchi predetti        : 16
+  True Positives (TP)    : 16
+  False Positives (FP)   : 0
+  False Negatives (FN)   : 0
+  Precision              : 1.0000 (100.0%)
+  Recall                 : 1.0000 (100.0%)
+  F1 Score               : 1.0000
+============================================================
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py validate --start 100000 --end 100500
+[device] cuda
+
+[validate] Range [100000.0, 100500.0] | 500,000 punti | 1,000,000 zeri
+[validate] Validazione CIECA: il range non è stato scelto per i risultati
+
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+[*] Calcolo in 31.1s
+
+============================================================
+  STATISTICHE DI VALIDAZIONE  (K=40 picchi selezionati)
+============================================================
+  Primi reali nel range  : 40
+  Picchi predetti        : 40
+  True Positives (TP)    : 30
+  False Positives (FP)   : 10
+  False Negatives (FN)   : 10
+  Precision              : 0.7500 (75.0%)
+  Recall                 : 0.7500 (75.0%)
+  F1 Score               : 0.7500
+============================================================
+
+  Falsi positivi (predetti non-primi): [100070, 100154, 100194, 100214, 100238, 100298, 100364, 100380, 100394, 100418]
+  Falsi negativi (primi mancati):      [100043, 100103, 100151, 100183, 100189, 100267, 100291, 100357, 100361, 100391]
+
+real	0m33,597s
+user	0m19,253s
+sys	0m16,452s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max_zeros 1000000 --top 5
+Usa il codice con cautela.🎯 Cosa dobbiamo osservare nel log:Scomparsa di 8088.22: Se il filtro di contrasto funziona, il valore centrale (non primo) deve crollare verso lo zero o diventare un valore negativo.Due Picchi Distinti: Dobbiamo vedere nella tabella:8087.00... | PRIMO8089.00... | PRIMOR(n) Elevato: I valori di risonanza per questi due devono essere significativamente più alti degli altri (es. > 2.5).💡 Se i picchi sono ancora troppo vicini:Se dovessi vedere ancora un unico blocco, non è un fallimento, ma un limite di risoluzione della fase. In quel caso, aggiungeremo una riga di "Phase Sharpening" nel kernel:fasi = torch.pow(b_gamma * log_x.unsqueeze(0), 1.0000001)(Una micro-correzione per compensare l'espansione logaritmica).Lancia il comando e incolla qui il risultato della tabella. Se separiamo questi due, la strada verso RSA-100 è ufficialmente aperta! 🏁🚀Le risposte dell'AI potrebbero contenere errori. Scopri di più
+usage: spectral_resonance.py [-h] {zoom,validate,sweep} ...
+spectral_resonance.py: error: unrecognized arguments: --max_zeros 1000000
+bash: syntax error near unexpected token `('
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max_zeros 1000000 --top 5
+usage: spectral_resonance.py [-h] {zoom,validate,sweep} ...
+spectral_resonance.py: error: unrecognized arguments: --max_zeros 1000000
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 1000000 --top 5
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 1,000,000 zeri
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 351, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 343, in main
+    mode_zoom(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 144, in mode_zoom
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 102, in compute_resonance
+    contributi = torch.cos(fasi) * b_weight
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 11.18 GiB. GPU 0 has a total capacity of 23.54 GiB of which 594.06 MiB is free. Including non-PyTorch memory, this process has 22.92 GiB memory in use. Of the allocated memory 22.46 GiB is allocated by PyTorch, and 33.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 100000 --top 5
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 100,000 zeri
+[zeri] Caricati 100,000 zeri da zeri_1M.txt
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 351, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 343, in main
+    mode_zoom(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 144, in mode_zoom
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 102, in compute_resonance
+    contributi = torch.cos(fasi) * b_weight
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 11.18 GiB. GPU 0 has a total capacity of 23.54 GiB of which 630.06 MiB is free. Including non-PyTorch memory, this process has 22.89 GiB memory in use. Of the allocated memory 22.44 GiB is allocated by PyTorch, and 10.74 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 100000 --top 5
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 100,000 zeri
+[zeri] Caricati 100,000 zeri da zeri_1M.txt
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 351, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 343, in main
+    mode_zoom(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 144, in mode_zoom
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 102, in compute_resonance
+    contributi = torch.cos(fasi) * b_weight
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.71 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.85 GiB is free. Including non-PyTorch memory, this process has 20.65 GiB memory in use. Of the allocated memory 20.21 GiB is allocated by PyTorch, and 11.56 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 100000 --top 5
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 100,000 zeri
+[zeri] Caricati 100,000 zeri da zeri_1M.txt
+[*] Calcolo completato in 20.3s
+
+======================================================================
+RISONANZA (x)      | INTERO     | R(n)         | STATO
+----------------------------------------------------------------------
+8089               | 8089       | 2.420981     | PRIMO
+8087               | 8087       | 1.916049     | PRIMO
+8090               | 8090       | 0.973335     | ADJ← (n-1 primo)
+8088               | 8088       | 0.669112     | CENTRO GEMELLI
+8091               | 8091       | 0.391694     | COMPOSTO
+======================================================================
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 100000 --top 5
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 100,000 zeri
+[zeri] Caricati 100,000 zeri da zeri_1M.txt
+[*] Calcolo completato in 20.3s
+
+======================================================================
+RISONANZA (x)      | INTERO     | R(n)         | STATO
+----------------------------------------------------------------------
+8089               | 8089       | 2.421145     | PRIMO
+8087               | 8087       | 1.915931     | PRIMO
+8090               | 8090       | 0.973402     | ADJ← (n-1 primo)
+8088               | 8088       | 0.669064     | CENTRO GEMELLI
+8091               | 8091       | 0.391744     | COMPOSTO
+======================================================================
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ def (x_vals: torch.Tensor,
+^C
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ # Usa 1 milione di zeri per la massima definizione spettrale
+python spectral_resonance.py zoom --start 8085 --end 8091 --max_zeros 1000000 --top 10
+usage: spectral_resonance.py [-h] {zoom,validate,sweep} ...
+spectral_resonance.py: error: unrecognized arguments: --max_zeros 1000000
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 1000000 --top 10
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 1,000,000 zeri
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 380, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 372, in main
+    mode_zoom(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 173, in mode_zoom
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 139, in compute_resonance
+    local_mean = torch.nn.functional.conv1d(padded_signal, kernel).squeeze()
+RuntimeError: Input type (torch.cuda.DoubleTensor) and weight type (torch.cuda.FloatTensor) should be the same
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 1000000 --top 10
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 1,000,000 zeri
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 385, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 377, in main
+    mode_zoom(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 178, in mode_zoom
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 148, in compute_resonance
+    R_high_pass = signal - local_mean
+RuntimeError: The size of tensor a (3000000) must match the size of tensor b (3000001) at non-singleton dimension 0
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 1000000 --top 10
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 1,000,000 zeri
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+[*] Calcolo completato in 202.8s
+
+======================================================================
+RISONANZA (x)      | INTERO     | R(n)         | STATO
+----------------------------------------------------------------------
+8089               | 8089       | 6.148220     | PRIMO
+8087               | 8087       | 6.090204     | PRIMO
+8085               | 8085       | 1.440890     | COMPOSTO
+8091               | 8091       | 0.411935     | COMPOSTO
+8090               | 8090       | 0.409547     | ADJ← (n-1 primo)
+8088               | 8088       | 0.404070     | CENTRO GEMELLI
+8086               | 8086       | -0.027328    | ADJ→ (n+1 primo)
+======================================================================
+
+real	4m9,614s
+user	2m18,729s
+sys	1m53,056s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py zoom --start 8085 --end 8091 --max-zeros 1000000 --top 10
+[device] cuda
+
+[zoom] Range [8085.0, 8091.0] | 3,000,000 punti | 1,000,000 zeri
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+[*] Calcolo completato in 202.9s
+
+======================================================================
+RISONANZA (x)      | INTERO     | R(n)         | STATO
+----------------------------------------------------------------------
+8089               | 8089       | 6.148220     | PRIMO
+8087               | 8087       | 6.090204     | PRIMO
+8085               | 8085       | 1.440890     | COMPOSTO
+8091               | 8091       | 0.411935     | COMPOSTO
+8090               | 8090       | 0.409547     | ADJ← (n-1 primo)
+8088               | 8088       | 0.404070     | CENTRO GEMELLI
+8086               | 8086       | -0.027328    | ADJ→ (n+1 primo)
+======================================================================
+
+real	4m9,732s
+user	2m18,659s
+sys	1m53,224s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000 --end 10010000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 ATTACK] Avvio scansione su 10,000 unità
+[⚙️ CONFIG] Chunk: 1000 | Zeri: 1,000,000 | Soglia R: 3.5
+[*] Analisi settore: [10009000 -> 10010000]...
+[✅] Scansione completata. Elaborazione picchi...
+
+████████████████████████████████████████████████████████████
+            RISULTATI ATTACK SPETTRALE (TOP 20)             
+████████████████████████████████████████████████████████████
+POSSIBILE FATTORE (n)     | FORZA R(n)      | STATO
+------------------------------------------------------------
+10002000                  | 25.415281       | COMPOSTO
+10001000                  | 22.856973       | COMPOSTO
+10006000                  | 22.392784       | ADJ→ (n+1 primo)
+10005000                  | 13.964686       | COMPOSTO
+10009000                  | 11.497516       | COMPOSTO
+10008000                  | 9.326362        | COMPOSTO
+10004000                  | 7.572365        | ADJ← (n-1 primo)
+10007000                  | 6.988989        | COMPOSTO
+████████████████████████████████████████████████████████████
+
+real	5m17,830s
+user	2m27,678s
+sys	2m52,156s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000 --end 10010000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 RSA RADAR] Scansione: 10,000,000 -> 10,010,000
+[⚙️ CONFIG] Erdős Threshold: 1.6318 | Zeri: 1,000,000
+[*] Settore RSA: [10009000] Scanning...
+[✅] Scansione terminata. Filtraggio coerenza in corso...
+
+██████████████████████████████████████████████████████████████████████
+            🎯 TARGET AGGANCIATI DAL RADAR (ERDŐS-RIEMANN)             
+██████████████████████████████████████████████████████████████████████
+POSSIBILE FATTORE (n)     | FORZA R(n)      | ERDŐS COHERENCE
+----------------------------------------------------------------------
+10001000                  | 10.360967       | ALTA
+10006000                  | 10.071720       | ALTA
+10002000                  | 8.053629        | ALTA
+10005000                  | 4.527378        | MEDIA
+10008000                  | 4.158620        | MEDIA
+10009000                  | 3.703671        | MEDIA
+██████████████████████████████████████████████████████████████████████
+
+real	5m17,451s
+user	2m25,945s
+sys	2m53,688s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ ^C
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max_zeros 1000000
+usage: spectral_resonance.py [-h] {zoom,validate,sweep,attack} ...
+spectral_resonance.py: error: unrecognized arguments: --max_zeros 1000000
+
+real	0m1,568s
+user	0m3,467s
+sys	0m0,193s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 RSA RADAR] Scansione: 31,622,776,600,000 -> 31,622,776,610,000
+[⚙️ CONFIG] Erdős Threshold: 1.6318 | Zeri: 1,000,000
+^CTraceback (most recent call last):anning...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 559, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 555, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 273, in mode_attack
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 212, in compute_resonance
+    contributi = torch.cos(fasi) * b_weight
+KeyboardInterrupt
+
+
+real	0m26,154s
+user	0m14,471s
+sys	0m13,797s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 RSA RADAR] Scansione: 31,622,776,600,000 -> 31,622,776,610,000
+[⚙️ CONFIG] Erdős Threshold: 1.6318 | Zeri: 1,000,000
+[*] Settore RSA: [31622776609000] Scanning...
+[✅] Scansione terminata. Filtraggio coerenza in corso...
+
+██████████████████████████████████████████████████████████████████████
+            🎯 TARGET AGGANCIATI DAL RADAR (ERDŐS-RIEMANN)             
+██████████████████████████████████████████████████████████████████████
+POSSIBILE FATTORE (n)     | FORZA R(n)      | ERDŐS COHERENCE
+----------------------------------------------------------------------
+31622776607103            | 8.005233        | ALTA
+31622776602857            | 7.750798        | ALTA
+31622776602153            | 7.722311        | ALTA
+31622776605740            | 7.700100        | ALTA
+31622776604233            | 7.566071        | ALTA
+31622776605250            | 7.462831        | ALTA
+31622776603483            | 7.342486        | ALTA
+31622776602567            | 7.288832        | ALTA
+31622776600397            | 7.252668        | ALTA
+31622776603277            | 7.077812        | ALTA
+31622776609562            | 6.985632        | ALTA
+31622776603858            | 6.962796        | ALTA
+31622776602963            | 6.952326        | ALTA
+31622776600799            | 6.930380        | ALTA
+31622776608585            | 6.925084        | ALTA
+31622776605643            | 6.656499        | ALTA
+31622776606165            | 6.617158        | ALTA
+31622776607712            | 6.610246        | ALTA
+31622776601945            | 6.596889        | ALTA
+31622776606573            | 6.592146        | ALTA
+██████████████████████████████████████████████████████████████████████
+
+real	5m18,566s
+user	2m27,467s
+sys	2m52,887s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max-zeros 1000000
+[device] cuda
+Traceback (most recent call last):
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 624, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 620, in main
+    mode_attack(args, device)
+NameError: name 'mode_attack' is not defined
+
+real	0m1,617s
+user	0m3,465s
+sys	0m0,261s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[⚡ MIRKO HYPER-RADAR] Target Range: 31,622,776,600,000 -> 31,622,776,610,000
+[⚙️ CONFIG] Mode: Hyperbolic Complex | Soglia Dinamica attiva
+Traceback (most recent call last):0000] ... In corso
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 694, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 690, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 349, in mode_attack
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 446, in compute_resonance
+    if local_mean.shape > signal.shape: local_mean = local_mean[:signal.shape]
+TypeError: slice indices must be integers or None or have an __index__ method
+
+real	2m51,164s
+user	1m20,570s
+sys	1m32,584s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[⚡ MIRKO HYPER-RADAR] Target Range: 31,622,776,600,000 -> 31,622,776,610,000
+[⚙️ CONFIG] Mode: Hyperbolic Complex | Soglia Dinamica attiva
+[*] Scansione Settore: [31622776603000] ... In corso
+
+[*] Scansione Settore: [31622776609000] ... In corso
+[✅] Scansione terminata. Analisi singolarità...
+
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+               RISULTATI ATTACK IPERBOLICO (i^2 = 1.63)               
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+FATTORE CANDIDATO (n)     | RISONANZA R(n)  | PROBABILITÀ
+----------------------------------------------------------------------
+31622776601534            | 9.550728        | 💎 ALTA
+31622776605003            | 9.285287        | 💎 ALTA
+31622776601674            | 9.196691        | 💎 ALTA
+31622776601010            | 9.161364        | 💎 ALTA
+31622776604038            | 9.138395        | 💎 ALTA
+31622776606360            | 9.073439        | 💎 ALTA
+31622776605112            | 8.933082        | 💎 ALTA
+31622776600949            | 8.869427        | 💎 ALTA
+31622776609410            | 8.855807        | 💎 ALTA
+31622776608815            | 8.825097        | 💎 ALTA
+31622776607754            | 8.749301        | 💎 ALTA
+31622776602805            | 8.738558        | 💎 ALTA
+31622776607968            | 8.689379        | 💎 ALTA
+31622776607670            | 8.677863        | 💎 ALTA
+31622776604159            | 8.661357        | 💎 ALTA
+31622776602403            | 8.657821        | 💎 ALTA
+31622776607436            | 8.645520        | 💎 ALTA
+31622776601372            | 8.598621        | 💎 ALTA
+31622776600404            | 8.555909        | 💎 ALTA
+31622776608720            | 8.551324        | 💎 ALTA
+----------------------------------------------------------------------
+ Totale bersagli agganciati: 3109
+██████████████████████████████████████████████████████████████████████
+
+real	28m10,322s
+user	12m26,976s
+sys	15m45,649s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ 
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ 
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 31622776600000 --end 31622776610000 --max-zeros 1000000^C
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 9999995000 --end 10000005000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[⚡ MIRKO HYPER-RADAR] Target Range: 9,999,995,000 -> 10,000,005,000
+[⚙️ CONFIG] Mode: Hyperbolic Complex | Soglia Dinamica attiva
+[*] Scansione Settore: [10000004000] ... In corso
+[✅] Scansione terminata. Analisi singolarità...
+
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+               RISULTATI ATTACK IPERBOLICO (i^2 = 1.63)               
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+FATTORE CANDIDATO (n)     | RISONANZA R(n)  | PROBABILITÀ
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ Totale bersagli agganciati: 0
+██████████████████████████████████████████████████████████████████████
+
+real	28m11,552s
+user	12m25,246s
+sys	15m48,789s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 9999995000 --end 10000005000 --max-zeros 1000000ral_resonance.py[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[⚡ MIRKO HYPER-RADAR] Target Range: 9,999,995,000 -> 10,000,005,000
+[⚙️ CONFIG] Mode: Hyperbolic Complex | Soglia Dinamica attiva
+[*] Scansione Settore: [10000004000] ... In corso
+[✅] Scansione terminata. Analisi singolarità...
+
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+               RISULTATI ATTACK IPERBOLICO (i^2 = 1.63)               
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+FATTORE CANDIDATO (n)     | RISONANZA R(n)  | PROBABILITÀ
+----------------------------------------------------------------------
+10000000390               | 4.954136        | 💎 ALTA
+10000002879               | 4.778577        | 💎 ALTA
+10000004845               | 4.570516        | 💎 ALTA
+10000002878               | 4.545077        | 💎 ALTA
+10000003997               | 4.539315        | 💎 ALTA
+9999998609                | 4.401054        | 💎 ALTA
+9999995408                | 4.388087        | 💎 ALTA
+9999997067                | 4.307083        | 💎 ALTA
+10000003208               | 4.234569        | 💎 ALTA
+10000000302               | 4.168139        | 💎 ALTA
+9999998329                | 4.118882        | 💎 ALTA
+10000003312               | 4.076336        | 💎 ALTA
+10000000061               | 4.074288        | 💎 ALTA
+9999998017                | 4.071854        | 💎 ALTA
+10000003251               | 4.070476        | 💎 ALTA
+10000002239               | 4.054728        | 💎 ALTA
+9999996927                | 4.046191        | 💎 ALTA
+10000002803               | 4.031378        | 💎 ALTA
+10000002458               | 4.019703        | 💎 ALTA
+9999999960                | 4.015138        | 💎 ALTA
+----------------------------------------------------------------------
+ Totale bersagli agganciati: 6016
+██████████████████████████████████████████████████████████████████████
+
+real	2m55,206s
+user	1m24,956s
+sys	1m32,404s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 9999995000 --end 10000005000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 9,999,995,000
+Traceback (most recent call last):] ...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 1074, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 1070, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 799, in mode_attack
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 715, in compute_resonance
+    risonanza += torch.sum(fase_mirko * b_weight.unsqueeze(1), dim=0)
+RuntimeError: output with shape [200000] doesn't match the broadcast shape [1, 200000]
+
+real	0m2,546s
+user	0m3,979s
+sys	0m0,466s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 9999995000 --end 10000005000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 9,999,995,000
+^CTraceback (most recent call last):...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 1077, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 1073, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 802, in mode_attack
+    R = compute_resonance(x_vals, gamma, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance.py", line 718, in compute_resonance
+    contributo_blocco = torch.sum(fase_mirko * b_weight.unsqueeze(1), dim=0)
+KeyboardInterrupt
+
+
+real	2m3,893s
+user	0m59,547s
+sys	1m6,450s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max_zeros 1000000
+usage: spectral_resonance.py [-h] {zoom,validate,sweep,attack} ...
+spectral_resonance.py: error: unrecognized arguments: --max_zeros 1000000
+
+real	0m1,544s
+user	0m3,475s
+sys	0m0,182s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI POINCARÉ)               
+██████████████████████████████████████████████████████████████████████
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 0
+
+real	0m36,695s
+user	0m19,435s
+sys	0m19,378s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI POINCARÉ)               
+██████████████████████████████████████████████████████████████████████
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 0
+
+real	0m36,685s
+user	0m19,419s
+sys	0m19,379s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI POINCARÉ)               
+██████████████████████████████████████████████████████████████████████
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 0
+
+real	0m36,633s
+user	0m19,613s
+sys	0m19,139s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI POINCARÉ)               
+██████████████████████████████████████████████████████████████████████
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 0
+
+real	1m27,048s
+user	0m41,706s
+sys	0m47,474s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI POINCARÉ)               
+██████████████████████████████████████████████████████████████████████
+10000000615               | 3.512952        | 💎 ALTA
+10000000655               | 3.341269        | 💎 ALTA
+10000000614               | 3.229302        | 💎 ALTA
+10000000022               | 3.216239        | 💎 ALTA
+10000000023               | 3.208774        | 💎 ALTA
+10000000570               | 3.076280        | 💎 ALTA
+10000000670               | 3.076280        | 💎 ALTA
+10000000582               | 3.001635        | 💎 ALTA
+10000000669               | 2.930722        | 💎 ALTA
+10000000858               | 2.912061        | 💎 ALTA
+10000000654               | 2.882203        | 💎 ALTA
+10000000348               | 2.826220        | 💎 ALTA
+10000000349               | 2.811291        | 💎 ALTA
+10000000583               | 2.811291        | 💎 ALTA
+10000000363               | 2.803826        | 💎 ALTA
+10000000596               | 2.800094        | 💎 ALTA
+10000000723               | 2.781433        | 💎 ALTA
+10000000637               | 2.766504        | 💎 ALTA
+10000000083               | 2.686260        | 💎 ALTA
+10000000287               | 2.658269        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 366
+
+real	1m31,681s
+user	0m45,689s
+sys	0m48,120s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Iperbolico | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI POINCARÉ)               
+██████████████████████████████████████████████████████████████████████
+10000000615               | 3.512952        | 💎 ALTA
+10000000655               | 3.341269        | 💎 ALTA
+10000000614               | 3.229302        | 💎 ALTA
+10000000022               | 3.216239        | 💎 ALTA
+10000000023               | 3.208774        | 💎 ALTA
+10000000570               | 3.076280        | 💎 ALTA
+10000000670               | 3.076280        | 💎 ALTA
+10000000582               | 3.001635        | 💎 ALTA
+10000000669               | 2.930722        | 💎 ALTA
+10000000858               | 2.912061        | 💎 ALTA
+10000000654               | 2.882203        | 💎 ALTA
+10000000348               | 2.826220        | 💎 ALTA
+10000000349               | 2.811291        | 💎 ALTA
+10000000583               | 2.811291        | 💎 ALTA
+10000000363               | 2.803826        | 💎 ALTA
+10000000596               | 2.800094        | 💎 ALTA
+10000000723               | 2.781433        | 💎 ALTA
+10000000637               | 2.766504        | 💎 ALTA
+10000000083               | 2.686260        | 💎 ALTA
+10000000287               | 2.658269        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 366
+
+real	1m31,711s
+user	0m46,017s
+sys	0m47,815s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[device] cuda
+[zeri] Caricati 1,000,000 zeri da zeri_1M.txt
+
+[🚀 GEOMETRIC RADAR] Mode: Minkowski (Relatività) | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+              🎯 TARGET AGGANCIATI (METRICA DI MINKOWSKI)              
+██████████████████████████████████████████████████████████████████████
+10000000615               | 3.512952        | 💎 ALTA
+10000000655               | 3.341269        | 💎 ALTA
+10000000614               | 3.229302        | 💎 ALTA
+10000000022               | 3.216239        | 💎 ALTA
+10000000023               | 3.208774        | 💎 ALTA
+10000000570               | 3.076280        | 💎 ALTA
+10000000670               | 3.076280        | 💎 ALTA
+10000000582               | 3.001635        | 💎 ALTA
+10000000669               | 2.930722        | 💎 ALTA
+10000000858               | 2.912061        | 💎 ALTA
+10000000654               | 2.882203        | 💎 ALTA
+10000000348               | 2.826220        | 💎 ALTA
+10000000349               | 2.811291        | 💎 ALTA
+10000000583               | 2.811291        | 💎 ALTA
+10000000363               | 2.803826        | 💎 ALTA
+10000000596               | 2.800094        | 💎 ALTA
+10000000723               | 2.781433        | 💎 ALTA
+10000000637               | 2.766504        | 💎 ALTA
+10000000083               | 2.686260        | 💎 ALTA
+10000000287               | 2.658269        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 366
+
+real	1m31,669s
+user	0m45,703s
+sys	0m48,094s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance_clean.py attack --start 10000000000 --end 10000001000 --max-zeros 1000000
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: minkowski | Range: 10,000,000,000
+^CTraceback (most recent call last): ...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 157, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 154, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 106, in mode_attack
+    R = compute_resonance(x_vals, gamma, device, mode=args.geo)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 70, in compute_resonance
+    reale = torch.cos(fase)
+KeyboardInterrupt
+
+real	0m21,742s
+user	0m12,284s
+sys	0m11,571s
+
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance.py attack --start 10000000000 --end 10000001000 --geo minkowski
+usage: spectral_resonance.py [-h] {zoom,validate,sweep,attack} ...
+spectral_resonance.py: error: unrecognized arguments: --geo minkowski
+
+real	0m1,579s
+user	0m3,489s
+sys	0m0,207s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance_clean.py attack --start 10000000000 --end 10000001000 --geo minkowski
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: minkowski | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+                   🎯 TARGET AGGANCIATI (MINKOWSKI)                    
+██████████████████████████████████████████████████████████████████████
+10000000615               | 3.521647        | 💎 ALTA
+10000000655               | 3.352938        | 💎 ALTA
+10000000022               | 3.220952        | 💎 ALTA
+10000000614               | 3.216071        | 💎 ALTA
+10000000023               | 3.204326        | 💎 ALTA
+10000000570               | 3.075076        | 💎 ALTA
+10000000670               | 3.073187        | 💎 ALTA
+10000000582               | 3.007438        | 💎 ALTA
+10000000669               | 2.955093        | 💎 ALTA
+10000000858               | 2.912760        | 💎 ALTA
+10000000654               | 2.888666        | 💎 ALTA
+10000000348               | 2.826540        | 💎 ALTA
+10000000349               | 2.816512        | 💎 ALTA
+10000000583               | 2.811257        | 💎 ALTA
+10000000596               | 2.807853        | 💎 ALTA
+10000000363               | 2.807749        | 💎 ALTA
+10000000723               | 2.794197        | 💎 ALTA
+10000000637               | 2.767173        | 💎 ALTA
+10000000083               | 2.689515        | 💎 ALTA
+10000000287               | 2.659205        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 201
+
+real	1m28,960s
+user	0m42,493s
+sys	0m48,603s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 10000000000 --end 10000001000 --geo symplectic
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 10,000,000,000
+[*] Scansione Settore: [10000000000] ...
+██████████████████████████████████████████████████████████████████████
+                   🎯 TARGET AGGANCIATI (SYMPLECTIC)                   
+██████████████████████████████████████████████████████████████████████
+10000000984               | 2.682454        | 💎 ALTA
+10000000214               | 2.021770        | 💎 ALTA
+10000000983               | 1.591547        | 💎 ALTA
+10000000982               | 1.590786        | 💎 ALTA
+10000000981               | 1.590024        | 💎 ALTA
+10000000980               | 1.589262        | 💎 ALTA
+10000000979               | 1.588501        | 💎 ALTA
+10000000978               | 1.587739        | 💎 ALTA
+10000000977               | 1.586978        | 💎 ALTA
+10000000976               | 1.586216        | 💎 ALTA
+10000000975               | 1.585454        | 💎 ALTA
+10000000974               | 1.584693        | 💎 ALTA
+10000000973               | 1.583931        | 💎 ALTA
+10000000972               | 1.583169        | 💎 ALTA
+10000000971               | 1.582408        | 💎 ALTA
+10000000970               | 1.581646        | 💎 ALTA
+10000000969               | 1.580884        | 💎 ALTA
+10000000968               | 1.580123        | 💎 ALTA
+10000000967               | 1.579361        | 💎 ALTA
+10000000966               | 1.578599        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 67
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776600000 --end 31622776610000 --geo symplectic --max-zeros 1000000
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 31,622,776,600,000
+^CTraceback (most recent call last):00] ...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 157, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 154, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 106, in mode_attack
+    R = compute_resonance(x_vals, gamma, device, mode=args.geo)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 75, in compute_resonance
+    risonanza += contributo.squeeze()
+KeyboardInterrupt
+
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776600000 --end 31622776601000 --geo symplectic --max-zeros 1000000
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 31,622,776,600,000
+[*] Scansione Settore: [31622776600000] ...
+██████████████████████████████████████████████████████████████████████
+                   🎯 TARGET AGGANCIATI (SYMPLECTIC)                   
+██████████████████████████████████████████████████████████████████████
+31622776601000            | 1.731686        | 💎 ALTA
+31622776600999            | 1.730289        | 💎 ALTA
+31622776600998            | 1.726830        | 💎 ALTA
+31622776600997            | 1.723371        | 💎 ALTA
+31622776600996            | 1.719912        | 💎 ALTA
+31622776600995            | 1.716453        | 💎 ALTA
+31622776600994            | 1.712994        | 💎 ALTA
+31622776600993            | 1.709535        | 💎 ALTA
+31622776600992            | 1.706041        | 💎 ALTA
+31622776600991            | 1.702617        | 💎 ALTA
+31622776600990            | 1.699158        | 💎 ALTA
+31622776600989            | 1.695665        | 💎 ALTA
+31622776600988            | 1.692241        | 💎 ALTA
+31622776600987            | 1.688747        | 💎 ALTA
+31622776600986            | 1.685288        | 💎 ALTA
+31622776600985            | 1.681794        | 💎 ALTA
+31622776600984            | 1.678370        | 💎 ALTA
+31622776600983            | 1.674876        | 💎 ALTA
+31622776600982            | 1.671417        | 💎 ALTA
+31622776600981            | 1.667958        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 68
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ ^[[200~python spectral_resonance_clean.py attack --start 31622776607000 --end 31622776608000 --geo symplectic --max-zeros 1000000
+python: command not found
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ ~python spectral_resonance_clean.py attack --start 31622776607000 --end 31622776608000 --geo symplectic --max-zeros 1000000
+Command '~python' not found, did you mean:
+  command 'xpython' from deb xpython (0.12.5-1build1)
+  command 'bpython' from deb bpython (0.22.1-2)
+Try: sudo apt install <deb name>
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776607000 --end 31622776608000 --geo symplectic --max-zeros 1000000
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 31,622,776,607,000
+[*] Scansione Settore: [31622776607000] ...
+██████████████████████████████████████████████████████████████████████
+                   🎯 TARGET AGGANCIATI (SYMPLECTIC)                   
+██████████████████████████████████████████████████████████████████████
+31622776608000            | 1.731713        | 💎 ALTA
+31622776607999            | 1.730315        | 💎 ALTA
+31622776607998            | 1.726856        | 💎 ALTA
+31622776607997            | 1.723362        | 💎 ALTA
+31622776607996            | 1.719938        | 💎 ALTA
+31622776607995            | 1.716445        | 💎 ALTA
+31622776607994            | 1.712986        | 💎 ALTA
+31622776607993            | 1.709527        | 💎 ALTA
+31622776607992            | 1.706068        | 💎 ALTA
+31622776607991            | 1.702574        | 💎 ALTA
+31622776607990            | 1.699150        | 💎 ALTA
+31622776607989            | 1.695656        | 💎 ALTA
+31622776607988            | 1.692197        | 💎 ALTA
+31622776607987            | 1.688703        | 💎 ALTA
+31622776607986            | 1.685279        | 💎 ALTA
+31622776607985            | 1.681785        | 💎 ALTA
+31622776607984            | 1.678327        | 💎 ALTA
+31622776607983            | 1.674868        | 💎 ALTA
+31622776607982            | 1.671409        | 💎 ALTA
+31622776607981            | 1.667915        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 68
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776610000 --geo symplectic --max-zeros 1000000 --threshold 1.0
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 31,622,776,605,000
+[*] Scansione Settore: [31622776609000] ...
+██████████████████████████████████████████████████████████████████████
+                   🎯 TARGET AGGANCIATI (SYMPLECTIC)                   
+██████████████████████████████████████████████████████████████████████
+31622776610000            | 1.731720        | 💎 ALTA
+31622776608000            | 1.731713        | 💎 ALTA
+31622776607000            | 1.731709        | 💎 ALTA
+31622776606000            | 1.731705        | 💎 ALTA
+31622776609000            | 1.731682        | 💎 ALTA
+31622776608999            | 1.730319        | 💎 ALTA
+31622776607999            | 1.730315        | 💎 ALTA
+31622776605999            | 1.730308        | 💎 ALTA
+31622776609999            | 1.730288        | 💎 ALTA
+31622776606999            | 1.730276        | 💎 ALTA
+31622776605998            | 1.726884        | 💎 ALTA
+31622776607998            | 1.726856        | 💎 ALTA
+31622776606998            | 1.726853        | 💎 ALTA
+31622776609998            | 1.726829        | 💎 ALTA
+31622776608998            | 1.726825        | 💎 ALTA
+31622776608997            | 1.723401        | 💎 ALTA
+31622776605997            | 1.723390        | 💎 ALTA
+31622776609997            | 1.723370        | 💎 ALTA
+31622776607997            | 1.723362        | 💎 ALTA
+31622776606997            | 1.723359        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 1060
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776600500 --geo symplectic --max-zeros 1000000 --threshold 1.0
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 31,622,776,605,000
+
+██████████████████████████████████████████████████████████████████████
+                   🎯 TARGET AGGANCIATI (SYMPLECTIC)                   
+██████████████████████████████████████████████████████████████████████
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 0
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776605500 --geo symplectic --max-zeros 1000000 --threshold 1.0
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: symplectic | Range: 31,622,776,605,000
+^CTraceback (most recent call last):00] ...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 171, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 168, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 120, in mode_attack
+    R = compute_resonance(x_vals, gamma, device, mode=args.geo)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 84, in compute_resonance
+    reale = torch.cos(fase)
+KeyboardInterrupt
+
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776605500 --geo string --max-zeros 1000000 --threshold 1.0
+usage: spectral_resonance_clean.py attack [-h] --start START --end END
+                                          [--geo {minkowski,hyperbolic,symplectic,euclidean}]
+                                          [--threshold THRESHOLD] [--zeros ZEROS] [--max-zeros MAX_ZEROS]
+spectral_resonance_clean.py attack: error: argument --geo: invalid choice: 'string' (choose from 'minkowski', 'hyperbolic', 'symplectic', 'euclidean')
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776605500 --geo string --max-zeros 1000000 --threshold 1.0
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: string | Range: 31,622,776,605,000
+[*] Scansione Settore: [31622776605000] ...
+██████████████████████████████████████████████████████████████████████
+                     🎯 TARGET AGGANCIATI (STRING)                     
+██████████████████████████████████████████████████████████████████████
+31622776605305            | 1.947449        | 💎 ALTA
+31622776605304            | 1.947449        | 💎 ALTA
+31622776605303            | 1.947449        | 💎 ALTA
+31622776605254            | 1.947444        | 💎 ALTA
+31622776605242            | 1.947443        | 💎 ALTA
+31622776605241            | 1.947443        | 💎 ALTA
+31622776605240            | 1.947443        | 💎 ALTA
+31622776605217            | 1.947441        | 💎 ALTA
+31622776605186            | 1.947438        | 💎 ALTA
+31622776605183            | 1.947438        | 💎 ALTA
+31622776605333            | 1.773129        | 💎 ALTA
+31622776605331            | 1.773129        | 💎 ALTA
+31622776605326            | 1.773128        | 💎 ALTA
+31622776605324            | 1.773128        | 💎 ALTA
+31622776605320            | 1.773128        | 💎 ALTA
+31622776605318            | 1.773128        | 💎 ALTA
+31622776605312            | 1.773127        | 💎 ALTA
+31622776605311            | 1.773127        | 💎 ALTA
+31622776605306            | 1.773126        | 💎 ALTA
+31622776605287            | 1.773125        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 128
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776605500 --geo adelic --max-zeros 1000000 --threshold 1.0
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: adelic | Range: 31,622,776,605,000
+[*] Scansione Settore: [31622776605000] ...
+██████████████████████████████████████████████████████████████████████
+                     🎯 TARGET AGGANCIATI (ADELIC)                     
+██████████████████████████████████████████████████████████████████████
+31622776605338            | 5.673268        | 🔥 CRITICO
+31622776605351            | 5.659670        | 🔥 CRITICO
+31622776605330            | 5.573135        | 🔥 CRITICO
+31622776605009            | 5.530545        | 🔥 CRITICO
+31622776605278            | 5.492906        | 🔥 CRITICO
+31622776605356            | 5.458671        | 🔥 CRITICO
+31622776605022            | 5.445788        | 🔥 CRITICO
+31622776605431            | 5.429182        | 🔥 CRITICO
+31622776605304            | 5.414338        | 🔥 CRITICO
+31622776605343            | 5.396785        | 🔥 CRITICO
+31622776605325            | 5.391359        | 🔥 CRITICO
+31622776605291            | 5.386990        | 🔥 CRITICO
+31622776605075            | 5.120473        | 🔥 CRITICO
+31622776605013            | 5.087359        | 🔥 CRITICO
+31622776605408            | 5.064105        | 🔥 CRITICO
+31622776605377            | 5.034832        | 🔥 CRITICO
+31622776605390            | 5.012926        | 🔥 CRITICO
+31622776605088            | 4.981541        | 💎 ALTA
+31622776605403            | 4.970468        | 💎 ALTA
+31622776605286            | 4.959310        | 💎 ALTA
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 501
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 31622776605000 --end 31622776605500 --geo adelic --max-zeros 1000000 --threshold 5.0
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: adelic | Range: 31,622,776,605,000
+[*] Scansione Settore: [31622776605000] ...
+██████████████████████████████████████████████████████████████████████
+                     🎯 TARGET AGGANCIATI (ADELIC)                     
+██████████████████████████████████████████████████████████████████████
+31622776605338            | 5.673268        | 🔥 CRITICO
+31622776605351            | 5.659670        | 🔥 CRITICO
+31622776605330            | 5.573135        | 🔥 CRITICO
+31622776605009            | 5.530545        | 🔥 CRITICO
+31622776605278            | 5.492906        | 🔥 CRITICO
+31622776605356            | 5.458671        | 🔥 CRITICO
+31622776605022            | 5.445788        | 🔥 CRITICO
+31622776605431            | 5.429182        | 🔥 CRITICO
+31622776605304            | 5.414338        | 🔥 CRITICO
+31622776605343            | 5.396785        | 🔥 CRITICO
+31622776605325            | 5.391359        | 🔥 CRITICO
+31622776605291            | 5.386990        | 🔥 CRITICO
+31622776605075            | 5.120473        | 🔥 CRITICO
+31622776605013            | 5.087359        | 🔥 CRITICO
+31622776605408            | 5.064105        | 🔥 CRITICO
+31622776605377            | 5.034832        | 🔥 CRITICO
+31622776605390            | 5.012926        | 🔥 CRITICO
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 17
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ #python spectral_resonance_clean.py attack --start 50195526170000 --end 50195526175000 --geo adelic --max-zeros 1000000 --threshold 2.5
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ git add 
+spectral_resonance_clean.py   spectral_resonance_zeroes.py  
+spectral_resonance.py         zeri_1M.txt                   
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ git add spectral_resonance*
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ git commit -m "Almost done"
+[main 716a367] Almost done
+ 3 files changed, 1229 insertions(+), 17 deletions(-)
+ create mode 100644 cc/spectral_resonance_clean.py
+ create mode 100644 cc/spectral_resonance_zeroes.py
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ python spectral_resonance_clean.py attack --start 50195526170000 --end 50195526175000 --geo adelic --max-zeros 1000000 --threshold 2.5
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: adelic | Range: 50,195,526,170,000
+^CTraceback (most recent call last):00] ...
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 179, in <module>
+    main()
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 176, in main
+    mode_attack(args, device)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 128, in mode_attack
+    R = compute_resonance(x_vals, gamma, device, mode=args.geo)
+  File "/home/aatel/Desktop/risonanza_perrone/cc/spectral_resonance_clean.py", line 92, in compute_resonance
+    reale = torch.cos(fase)
+KeyboardInterrupt
+
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance_clean.py attack --start 50195526170000 --end 50195526175000 --geo adelic --max-zeros 1000000 --threshold 2.5
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: adelic | Range: 50,195,526,170,000
+[*] Scansione Settore: [50195526174000] ...
+██████████████████████████████████████████████████████████████████████
+                     🎯 TARGET AGGANCIATI (ADELIC)                     
+██████████████████████████████████████████████████████████████████████
+50195526172237            | 5.852061        | 🔥 CRITICO
+50195526171183            | 5.833171        | 🔥 CRITICO
+50195526174397            | 5.808546        | 🔥 CRITICO
+50195526170744            | 5.779650        | 🔥 CRITICO
+50195526171552            | 5.764193        | 🔥 CRITICO
+50195526173985            | 5.761807        | 🔥 CRITICO
+50195526172606            | 5.738456        | 🔥 CRITICO
+50195526174354            | 5.721465        | 🔥 CRITICO
+50195526170770            | 5.718484        | 🔥 CRITICO
+50195526172931            | 5.706805        | 🔥 CRITICO
+50195526173712            | 5.702285        | 🔥 CRITICO
+50195526172219            | 5.693761        | 🔥 CRITICO
+50195526170428            | 5.638998        | 🔥 CRITICO
+50195526170445            | 5.638565        | 🔥 CRITICO
+50195526174766            | 5.633406        | 🔥 CRITICO
+50195526172562            | 5.622392        | 🔥 CRITICO
+50195526173273            | 5.621710        | 🔥 CRITICO
+50195526173686            | 5.621540        | 🔥 CRITICO
+50195526172536            | 5.602503        | 🔥 CRITICO
+50195526170401            | 5.584491        | 🔥 CRITICO
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 4180
+
+real	7m6,754s
+user	3m14,310s
+sys	3m54,643s
+⚙⚙ ~/Desktop/risonanza_perrone/cc
+➜ time python spectral_resonance_clean.py attack --start 50195526170000 --end 50195526175000 --geo adelic --max-zeros 1000000 --threshold 5.5
+[*] Caricamento zeri da zeri_1M.txt...
+
+[🚀 RADAR GEOMETRICO] Mode: adelic | Range: 50,195,526,170,000
+[*] Scansione Settore: [50195526174000] ...
+██████████████████████████████████████████████████████████████████████
+                     🎯 TARGET AGGANCIATI (ADELIC)                     
+██████████████████████████████████████████████████████████████████████
+50195526172237            | 5.852061        | 🔥 CRITICO
+50195526171183            | 5.833171        | 🔥 CRITICO
+50195526174397            | 5.808546        | 🔥 CRITICO
+50195526170744            | 5.779650        | 🔥 CRITICO
+50195526171552            | 5.764193        | 🔥 CRITICO
+50195526173985            | 5.761807        | 🔥 CRITICO
+50195526172606            | 5.738456        | 🔥 CRITICO
+50195526174354            | 5.721465        | 🔥 CRITICO
+50195526170770            | 5.718484        | 🔥 CRITICO
+50195526172931            | 5.706805        | 🔥 CRITICO
+50195526173712            | 5.702285        | 🔥 CRITICO
+50195526172219            | 5.693761        | 🔥 CRITICO
+50195526170428            | 5.638998        | 🔥 CRITICO
+50195526170445            | 5.638565        | 🔥 CRITICO
+50195526174766            | 5.633406        | 🔥 CRITICO
+50195526172562            | 5.622392        | 🔥 CRITICO
+50195526173273            | 5.621710        | 🔥 CRITICO
+50195526173686            | 5.621540        | 🔥 CRITICO
+50195526172536            | 5.602503        | 🔥 CRITICO
+50195526170401            | 5.584491        | 🔥 CRITICO
+██████████████████████████████████████████████████████████████████████
+ Totale bersagli: 29
+
+real	7m4,538s
+user	3m11,246s
+sys	3m55,472s
+⚙⚙ ~/Desktop/risonanza_perrone/cc

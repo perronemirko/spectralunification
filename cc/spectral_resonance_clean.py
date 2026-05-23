@@ -8,8 +8,8 @@ import os
 # --- COSTANTI GLOBALI ---
 ERDOS_CONST = 1.6318
 DEFAULT_ZEROS_FILE = "zeri_1M.txt"
-BLOCK_SIZE = 100  # Ottimale per VRAM 24GB
-
+# BLOCK_SIZE = 100  #per complex64 Ottimale per VRAM 24GB
+BLOCK_SIZE = 50  # per complex128 Ottimale per VRAM 24GB
 # --- MOTORI GEOMETRICI (Scegli quello da usare in compute_resonance) ---
 
 def get_minkowski_metric(x_vals):
@@ -79,8 +79,8 @@ def compute_resonance(x_vals, gamma, device, mode="minkowski"):
         metric_x = get_euclidean_metric(x_vals)
 
     
-    weight = (1.0 / gamma).to(torch.complex64)
-    risonanza = torch.zeros_like(x_vals, dtype=torch.complex64)
+    weight = (1.0 / gamma).to(torch.complex128)
+    risonanza = torch.zeros_like(x_vals, dtype=torch.complex128)
 
     for i in range(0, gamma.shape[0], BLOCK_SIZE):
         b_gamma = gamma[i : i + BLOCK_SIZE].to(torch.float32)
