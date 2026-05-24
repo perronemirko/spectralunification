@@ -1,6 +1,7 @@
 # The Perrone Constant β: Precise Definition and Theoretical Extension
 
-## Clarification: β is defined over primes only
+## Clarification: β is defined over primes only and is equal to the Erdős-Lichtman  Erdős prime sum constant of prime numbers
+Theory of Prime Resonance
 
 The bi-harmonic density weight is:
 
