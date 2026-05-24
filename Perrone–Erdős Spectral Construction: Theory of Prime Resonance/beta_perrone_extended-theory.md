@@ -1,5 +1,5 @@
 # The Perrone Constant β: Precise Definition and Theoretical Extension
-
+## Graphs at the bottom of this file
 ## Clarification: β is defined over primes only and is equal to the Erdős-Lichtman  Erdős prime sum constant of prime numbers
 Theory of Prime Resonance
 
@@ -332,3 +332,13 @@ print(f"Δ_spectral = {Delta_spectral:.6f}")
 
 The theory is self-consistent, grounded in real analytic number theory,
 and contains at least three falsifiable conjectures.
+
+
+
+
+![Alt text](https://github.com/perronemirko/spectralunification/blob/main/Perrone%E2%80%93Erd%C5%91s%20Spectral%20Construction%3A%20Theory%20of%20Prime%20Resonance/01_beta_convergence.png "01_beta_convergence")
+![Alt text](https://github.com/perronemirko/spectralunification/blob/main/Perrone%E2%80%93Erd%C5%91s%20Spectral%20Construction%3A%20Theory%20of%20Prime%20Resonance/02_residuals_adelic.png "02_residuals_adelic")
+![Alt text](https://github.com/perronemirko/spectralunification/blob/main/Perrone%E2%80%93Erd%C5%91s%20Spectral%20Construction%3A%20Theory%20of%20Prime%20Resonance/03_ellipse_extrema.png "03_ellipse_extrema")
+![Alt text](https://github.com/perronemirko/spectralunification/blob/main/Perrone%E2%80%93Erd%C5%91s%20Spectral%20Construction%3A%20Theory%20of%20Prime%20Resonance/04_resonance_Rx.png "04_resonance_Rx")
+![Alt text](https://github.com/perronemirko/spectralunification/blob/main/Perrone%E2%80%93Erd%C5%91s%20Spectral%20Construction%3A%20Theory%20of%20Prime%20Resonance/05_delta_spectral.png "05_delta_spectral")
+![Alt text](https://github.com/perronemirko/spectralunification/blob/main/Perrone%E2%80%93Erd%C5%91s%20Spectral%20Construction%3A%20Theory%20of%20Prime%20Resonance/06_adelic_structure.png "06_adelic_structure")
