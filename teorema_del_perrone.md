@@ -2,6 +2,24 @@
 
 _Nome di lavoro per un risultato emerso dalla revisione critica della "Unificazione Spettrale Perrone–Erdős" di Mirko Perrone: nasce dal suo tentativo di costruire un rivelatore spettrale per l'ipotesi di Riemann, ma si dimostra indipendentemente da ogni altra parte di quella teoria._
 
+## Enunciato, a parole
+
+Agli zeri non banali della funzione zeta di Riemann si possono associare due funzioni della variabile reale positiva x. La prima si costruisce usando ogni zero per intero — sia la sua parte reale sia la sua ordinata (parte immaginaria). La seconda si costruisce invece ignorando deliberatamente la parte reale di ciascuno zero e usando solo la sua ordinata, come se ogni zero si trovasse già esattamente sulla retta critica — cioè come se l'ipotesi di Riemann fosse vera.
+
+Il teorema dice: queste due costruzioni coincidono, per **ogni** valore di x, esattamente quando l'ipotesi di Riemann è vera. Se anche un solo zero avesse parte reale diversa da 1/2, le due funzioni non potrebbero coincidere ovunque — anzi, la loro differenza crescerebbe senza limite al crescere di x. In altre parole: la prima funzione "sa" dove sono davvero gli zeri; la seconda assume che stiano tutti sulla retta; il teorema dice che l'unico modo perché non si accorgano mai della differenza è che la retta critica contenga davvero tutti gli zeri. È un teorema incondizionato: non assume l'ipotesi di Riemann né per dimostrarla né per confutarla, ne stabilisce l'equivalenza con un fatto verificabile in linea di principio.
+
+## Enunciato, per esteso
+
+**L'ipotesi di Riemann è vera se e solo se, per ogni x>0,**
+
+```
+Σ_ρ  x^ρ / (2√x · ρ(1−ρ))   =   Σ_{γ>0}  cos(γ·log x) / (1/4 + γ²)
+```
+
+**dove** a sinistra la somma è su tutti gli zeri non banali ρ di ζ(s), presi con la loro parte reale e immaginaria vere; **a destra** la somma è sulle sole ordinate positive γ degli zeri non banali, come se ciascuno stesse esattamente sulla retta Re(s)=1/2.
+
+Nel resto del documento il lato sinistro si chiama F(x) e il lato destro S(x), solo per brevità di scrittura.
+
 ## Notazione
 
 ρ = σ+iγ indica un generico zero non banale di ζ(s), σ:=Re(ρ), γ:=Im(ρ). Fatti classici usati senza dimostrarli: 0<σ<1 per ogni zero non banale; l'insieme degli zeri è chiuso per ρ↦ρ̄ (coefficienti reali di ζ) e per ρ↦1−ρ (equazione funzionale); il conteggio N(T) degli zeri con 0<γ≤T soddisfa N(T)=O(T log T) (Riemann–von Mangoldt).
